@@ -1,0 +1,28 @@
+{
+    "python.venvPath": "${workspaceFolder}/.venv/",
+    "python.pythonPath": ".venv/bin/python",
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/",
+    ],
+    "terminal.integrated.setLocaleVariables": false,
+    "python.linting.pylintEnabled": false,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.vagrant/**": true,
+        "**/.venv/**": true,
+        "**/bower_components/**": true,
+        "**/static/**": true
+      },
+    "python.linting.flake8Args": [
+        "--ignore=E501"
+    ],          
+    "markdownlint.config": {
+        "MD012": false,
+        "MD034": false,    
+    }
+}
