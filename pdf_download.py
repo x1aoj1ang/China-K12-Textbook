@@ -1,4 +1,6 @@
 import scrapy
+import os
+import errno
 
 from scrapy.http import Request
 
@@ -25,7 +27,16 @@ class PdfDownloader(scrapy.Spider):
 
 	def save_pdf(self, response, filename):
 		""" Save pdf files """
-		path = response.url.split('/')[-1]
-		self.logger.info('Saving PDF %s', path+filename);
-		with open(filename, 'wb') as file:
-			file.write(response.body);
+		# path = response.url.split('/')[-1]
+		path =  "/".join(response.url.split('/')[4:6])+"/"+filename;
+		self.logger.info('Saving PDF %s', path);
+		if not os.path.exists(os.path.dirname(path)):
+			try:
+				os.makedirs(os.path.dirname(path))
+			except OSError as exc: # Guard against race condition
+				if exc.errno != errno.EEXIST:
+					raise
+		with open(path, "wb") as f:
+			f.write(response.body);
+
+			
